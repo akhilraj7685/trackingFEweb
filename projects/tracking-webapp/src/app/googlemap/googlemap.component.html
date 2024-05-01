@@ -1,0 +1,11 @@
+<p>googlemap works!</p>
+<!-- google-map-demo.component.html -->
+<google-map id="kaka"
+  height="400px"
+  width="750px" 
+  [center]="center"
+  [zoom]="zoom" 
+  [mapId]="mapId"
+  (mapClick)="addMarker($event)" #gmpp (mapInitialized)="onMapReady($event)" >
+    
+</google-map>
