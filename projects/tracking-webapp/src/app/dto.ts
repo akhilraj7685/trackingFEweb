@@ -4,6 +4,13 @@ export interface MarkersAssetMap{
     marker:google.maps.marker.AdvancedMarkerElement
 }
 
+
+export interface GpsData{
+  lat:Number,
+  lang:Number,
+  assetId:string
+}
+
 export interface CreateUserRequest{
     
     countryCode: string | undefined,
@@ -410,7 +417,12 @@ export interface bdy{
 
 from:number,
 to:number;
-body:string,
-type:string,
+msgBody:string,
+type:MsgType,
 time:number
+  }
+
+  export enum MsgType{
+    GPSDATA,
+    NONGPSDATA
   }

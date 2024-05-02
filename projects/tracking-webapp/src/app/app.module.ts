@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { GooglemapComponent } from './googlemap/googlemap.component';
+import { WebsocketService } from './services/websocket.service';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,9 @@ import { GooglemapComponent } from './googlemap/googlemap.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GoogleMapsModule
+    GoogleMapsModule,
   ],
-  providers: [
+  providers: [WebsocketService,
     provideClientHydration()
   ],
   bootstrap: [AppComponent]
