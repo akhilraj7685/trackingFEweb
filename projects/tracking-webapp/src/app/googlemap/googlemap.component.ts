@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { MarkersAssetMap, Message, MsgType} from "../dto";
+import { AssetData, MarkersAssetMap, Message, MsgType} from "../dto";
 import { WebsocketService } from "../services/websocket.service";
 import { every } from "rxjs";
+import { AssetService } from "../asset.service";
 
 @Component({
   selector: 'app-googlemap',
@@ -10,7 +11,7 @@ import { every } from "rxjs";
 })
 export class GooglemapComponent implements OnInit{
 
-  constructor(private webs:WebsocketService) {
+  constructor(private webs:WebsocketService,private assetservice:AssetService) {
   webs.createConnection();
   }
  
@@ -20,7 +21,11 @@ export class GooglemapComponent implements OnInit{
   zoom = 4;
   mapId = "akhil123456"
   assetMarkerRecords:MarkersAssetMap[]=[];
-  
+  mapheight=window.innerHeight-100;
+  mapwidth=window.innerWidth-100
+  infowindow = new google.maps.InfoWindow({
+
+  });
 
   addMarker(gpsData:Message) {
     if(gpsData.type.toString()!="GPSDATA"){
@@ -35,7 +40,7 @@ export class GooglemapComponent implements OnInit{
       position:{ lat: Number.parseFloat(databody.lat), lng: Number.parseFloat(databody.lang) },
       gmpDraggable: true,
       // content: markerPin.element,
-      title:"heloooo",
+      title:databody.assetId,
       content:this.getRandomColor().element
     });
     let record={} as MarkersAssetMap;
@@ -47,16 +52,40 @@ export class GooglemapComponent implements OnInit{
     else{
       marker.position={ lat: Number.parseFloat(databody.lat), lng: Number.parseFloat(databody.lang) };
     }
-  
+
+    marker.addListener("click",()=>{
+     let asset:AssetData;
+     this.assetservice.getAssetByAssetId(databody.assetId).subscribe({
+      complete:()=>{
+        
+       let content="<div> <ul>assetId:"+asset.assetId+"</ul><ul>assetName:"+asset.assetName+"</ul><ul>onborded:"+asset.onBoardingTs+"</ul> <ul>assetType:"+asset.assetType+"</ul> <ul>driver:Mohan</ul>   </div>"
+       this.infowindow.setContent(content);
+        this.infowindow.open({
+          anchor: marker,
+        });
+      },
+      next(value) {
+        asset=value;
+      },
+      error(err) {
+        console.log(err)
+      },
+     });
+     
+      
+    })
   
   console.log(this.assetMarkerRecords)
   
   }
 
+
   getMarkerByAssetId(assetId:string){
     let record = this.assetMarkerRecords.find(rec=>rec.assetId==assetId);
      return record?.marker;
   }
+
+
 
   onMapReady(eve:google.maps.Map){
     console.log(eve);
@@ -90,4 +119,14 @@ export class GooglemapComponent implements OnInit{
       }
     });
   }
+
+
+
+  getMarkerByMarkerId(assetId:string){
+    let record = this.assetMarkerRecords.find(rec=>rec.assetId==assetId);
+     return record?.marker;
+  }
+
+
+
 }

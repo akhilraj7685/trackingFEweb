@@ -38,11 +38,11 @@
               "projects/tracking-webapp/src/styles.css"
             ],
             "scripts": [],
-            "server": "projects/tracking-webapp/src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "projects/tracking-webapp/server.ts"
-            }
+            // "server": "projects/tracking-webapp/src/main.server.ts",
+            // "prerender": true,
+            // "ssr": {
+            //   "entry": "projects/tracking-webapp/server.ts"
+            // }
           },
           "configurations": {
             "production": {

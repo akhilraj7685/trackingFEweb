@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { GooglemapComponent } from './googlemap/googlemap.component';
 import { WebsocketService } from './services/websocket.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { WebsocketService } from './services/websocket.service';
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
+    HttpClientModule
   ],
   providers: [WebsocketService,
     provideClientHydration()
