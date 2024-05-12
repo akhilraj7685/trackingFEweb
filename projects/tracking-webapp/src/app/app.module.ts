@@ -7,17 +7,21 @@ import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { GooglemapComponent } from './googlemap/googlemap.component';
 import { WebsocketService } from './services/websocket.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AssetManagementComponent } from './asset-management/asset-management.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GooglemapComponent
+    GooglemapComponent,
+    AssetManagementComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [WebsocketService,
     provideClientHydration()

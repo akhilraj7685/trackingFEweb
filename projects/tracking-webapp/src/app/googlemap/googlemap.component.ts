@@ -4,6 +4,7 @@ import { WebsocketService } from "../services/websocket.service";
 import { every } from "rxjs";
 import { AssetService } from "../asset.service";
 
+
 @Component({
   selector: 'app-googlemap',
   templateUrl: './googlemap.component.html',
@@ -41,7 +42,7 @@ export class GooglemapComponent implements OnInit{
       gmpDraggable: true,
       // content: markerPin.element,
       title:databody.assetId,
-      content:this.getRandomColor().element
+      content:this.getMarkerIcon().element
     });
     let record={} as MarkersAssetMap;
   record.assetId=databody.assetId;
@@ -71,10 +72,9 @@ export class GooglemapComponent implements OnInit{
         console.log(err)
       },
      });
-     
       
     })
-  
+
   console.log(this.assetMarkerRecords)
   
   }
@@ -98,9 +98,17 @@ export class GooglemapComponent implements OnInit{
 
 
    
-  getRandomColor():google.maps.marker.PinElement {
+  getMarkerIcon():google.maps.marker.PinElement {
+         // A marker with a custom SVG glyph.
+const glyphImg = document.createElement('img');
+glyphImg.src="../../assets/car.svg"
+glyphImg.width=50
+
+
+
     let pinBackground = new google.maps.marker.PinElement({
-      background: this.colorCodes.pop(),
+  glyph: glyphImg,
+  background: this.colorCodes.pop(),
      });
      return pinBackground;
   }
