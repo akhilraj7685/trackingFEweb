@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { AssetData, MarkersAssetMap, Message, MsgType} from "../dto";
 import { WebsocketService } from "../services/websocket.service";
 import { every } from "rxjs";
-import { AssetService } from "../asset.service";
+import { AssetService } from "../services/asset.service";
 
 
 @Component({
@@ -22,8 +22,8 @@ export class GooglemapComponent implements OnInit{
   zoom = 4;
   mapId = "akhil123456"
   assetMarkerRecords:MarkersAssetMap[]=[];
-  mapheight=window.innerHeight-100;
-  mapwidth=window.innerWidth-100
+  mapheight=window.innerHeight;
+  mapwidth=window.innerWidth-5;
   infowindow = new google.maps.InfoWindow({
 
   });
