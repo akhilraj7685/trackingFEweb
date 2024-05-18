@@ -1,1 +1,62 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <mat-toolbar color="primary">
+      Fleet Management Dashboard
+    </mat-toolbar>
+  
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" class="dashboard-content">
+      <mat-card class="dashboard-card" fxFlex="25" fxFlex.lt-md="100">
+        <mat-card-title>Total Vehicles</mat-card-title>
+        <mat-card-content>
+          <h2>120</h2>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="dashboard-card" fxFlex="25" fxFlex.lt-md="100">
+        <mat-card-title>Active Trips</mat-card-title>
+        <mat-card-content>
+          <h2>35</h2>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="dashboard-card" fxFlex="25" fxFlex.lt-md="100">
+        <mat-card-title>Maintenance Alerts</mat-card-title>
+        <mat-card-content>
+          <h2>8</h2>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="dashboard-card" fxFlex="25" fxFlex.lt-md="100">
+        <mat-card-title>Fuel Consumption</mat-card-title>
+        <mat-card-content>
+          <h2>5000 L</h2>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="dashboard-card" fxFlex="25" fxFlex.lt-md="100">
+        <mat-card-title>Fuel Consumption</mat-card-title>
+        <mat-card-content>
+          <h2>5000 L</h2>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div class="chart-container">
+      <mat-card>
+        <mat-card-title>Vehicle Usage Over Time</mat-card-title>
+        <mat-card-content>
+          <!-- Add your chart component here -->
+          <mat-card-content>
+            <canvas baseChart
+                    [datasets]="chartData"
+                    [labels]="chartLabels"
+                    [options]="chartOptions"
+                   
+                    [legend]="chartLegend"
+                    >
+            </canvas>
+          </mat-card-content>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  
